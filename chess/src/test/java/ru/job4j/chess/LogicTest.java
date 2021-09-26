@@ -24,8 +24,8 @@ public class LogicTest {
         Logic logic = new Logic();
         logic.add(new BishopBlack(Cell.C1));
         logic.add(new BishopBlack(Cell.E3));
-        logic.move(Cell.C1, Cell.G5);}
-        catch (OccupiedCellException ex) {
+        logic.move(Cell.C1, Cell.G5);
+        } catch (OccupiedCellException ex) {
             assertEquals(ex.getMessage(), "The way to cell E3 is occupied");
         }
     }
