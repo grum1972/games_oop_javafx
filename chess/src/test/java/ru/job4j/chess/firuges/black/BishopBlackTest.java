@@ -37,12 +37,6 @@ public class BishopBlackTest {
     }
 
     @Test
-    public void isDiagonalFalseWhenPositionXEqual() {
-        BishopBlack bb = new BishopBlack(Cell.C1);
-        assertFalse(bb.isDiagonal(Cell.C1, Cell.C1));
-    }
-
-    @Test
     public void way() {
         BishopBlack bb = new BishopBlack(Cell.C1);
         Cell[] arr = bb.way(Cell.G5);
