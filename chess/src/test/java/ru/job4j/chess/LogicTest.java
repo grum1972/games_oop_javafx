@@ -1,32 +1,33 @@
 package ru.job4j.chess;
 
-import org.junit.Ignore;
-import static org.junit.Assert.*;
 import org.junit.Test;
 import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.black.BishopBlack;
 
 public class LogicTest {
 
-    @Ignore
-    @Test
-    public void move()
-            throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
+    @Test(expected = ImpossibleMoveException.class)
+    public void whenMoveImpossible()
+            throws ImpossibleMoveException, OccupiedCellException, FigureNotFoundException {
         Logic logic = new Logic();
         logic.add(new BishopBlack(Cell.C1));
-        logic.move(Cell.C1, Cell.H6);
+        logic.move(Cell.C1, Cell.G4);
     }
 
-    @Test
-    public void free()
-            throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
-        try {
+    @Test(expected = FigureNotFoundException.class)
+    public void whenFigureNotFound()
+            throws ImpossibleMoveException, OccupiedCellException, FigureNotFoundException {
+        Logic logic = new Logic();
+        logic.add(new BishopBlack(Cell.C1));
+        logic.move(Cell.D2, Cell.G5);
+    }
+
+    @Test(expected = OccupiedCellException.class)
+    public void whenCellOccupied()
+            throws ImpossibleMoveException, OccupiedCellException, FigureNotFoundException {
         Logic logic = new Logic();
         logic.add(new BishopBlack(Cell.C1));
         logic.add(new BishopBlack(Cell.E3));
         logic.move(Cell.C1, Cell.G5);
-        } catch (OccupiedCellException ex) {
-            assertEquals(ex.getMessage(), "The way to cell E3 is occupied");
-        }
     }
 }
